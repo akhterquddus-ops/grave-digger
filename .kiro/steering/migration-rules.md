@@ -1,4 +1,4 @@
-﻿---
+---
 inclusion: always
 ---
 # Migration rules: porting PL/SQL to Python

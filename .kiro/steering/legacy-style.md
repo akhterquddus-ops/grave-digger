@@ -1,4 +1,4 @@
-﻿---
+---
 inclusion: fileMatch
 fileMatchPattern: "legacy/**"
 ---

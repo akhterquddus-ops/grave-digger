@@ -1,4 +1,4 @@
-﻿---
+---
 inclusion: always
 ---
 # Repo structure

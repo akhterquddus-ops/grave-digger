@@ -1,4 +1,4 @@
-﻿---
+---
 inclusion: always
 ---
 # Tech stack and conventions

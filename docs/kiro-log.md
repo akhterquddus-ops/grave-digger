@@ -1,4 +1,4 @@
-﻿# How we used Kiro (running log)
+# How we used Kiro (running log)
 
 | Date | Kiro feature | What we asked | What Kiro produced |
 |---|---|---|---|
