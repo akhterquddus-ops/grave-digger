@@ -1,0 +1,19 @@
+services:
+  oracle:
+    image: gvenzl/oracle-free:slim
+    container_name: gd-oracle
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+      APP_USER: gd
+      APP_USER_PASSWORD: ${APP_USER_PASSWORD}
+    volumes:
+      - gd-oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+volumes:
+  gd-oracle-data:
