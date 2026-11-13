@@ -3,3 +3,4 @@
 | Date | Kiro feature | What we asked | What Kiro produced |
 |---|---|---|---|
 | 2026-11-13 | (setup) | Repo created | Folder skeleton, /.kiro at root |
+| 2026-11-13 | Steering | Project rules for Kiro | product, tech, structure, migration-rules, legacy-style |
