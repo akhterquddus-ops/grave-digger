@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grave-digger"
+version = "0.1.0"
+description = "Raises legacy PL/SQL billing code from the dead: explains it, ports it to Python, and proves the port bills exactly like the original."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [{ name = "Muhammad Akhtar Quddus" }]
+dependencies = [
+    "oracledb==3.4.0",    # PINNED: newer wheels are blocked by Windows Smart App Control (no reputation yet)
+    "mcp>=2,<3",          # MCP server for Kiro (MCPServer API)
+    "streamlit>=1.40",    # public UI
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "hypothesis>=6.100",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+    "oracle: needs a running Oracle database (skipped when ORACLE_DSN is not set)",
+]
