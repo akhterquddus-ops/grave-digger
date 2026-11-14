@@ -14,8 +14,8 @@ Scope for this plan:
 
 ## Tasks
 
-- [ ] 1. Data types and `build_graph`
-  - [ ] 1.1 Create `graph.py` with the frozen dataclasses and constants
+- [x] 1. Data types and `build_graph`
+  - [x] 1.1 Create `graph.py` with the frozen dataclasses and constants
     - Create `src/gravedigger/autopsy/graph.py` with `from __future__ import annotations` and imports limited to `dataclasses`, `typing` and `gravedigger` (`Facts`, `scan` from `gravedigger.autopsy.scanner`; `Package`, `Unit` from `gravedigger.exhume`)
     - Import `scan` as a module-level name so that it can be patched as `gravedigger.autopsy.graph.scan`
     - Define `NodeKind` and `EdgeKind` literals
@@ -24,7 +24,7 @@ Scope for this plan:
     - Keep every colour string inside `THEME` only
     - _Requirements: 5.3, 5.4, 5.5, 8.5, 8.6, 9.3, 9.4_
 
-  - [ ] 1.2 Implement the private helpers and `build_graph`
+  - [x] 1.2 Implement the private helpers and `build_graph`
     - Implement `_unit_node(unit, facts)` with label `f"{unit.name} ({unit.kind})"` and `risks=(SWALLOW_RISK,)` only when `facts.swallows_errors` is true
     - Implement `_table_nodes(all_facts)` and `_global_nodes(all_facts)`: one node per distinct name in the union of `tables_read` and `tables_written`, and of `globals_used`; label equals id; no risks
     - Implement `_edges_for(unit, facts, unit_names)` returning a frozenset of `calls` (only names that are units of the package), `reads`, `writes` and `uses` edges
@@ -33,26 +33,26 @@ Scope for this plan:
     - Add docstrings that explain the function in plain English; no PL/SQL parsing
     - _Requirements: 1.1, 1.3, 1.5, 1.7, 1.8, 1.9, 2.1, 2.3, 3.1, 3.2, 3.3, 3.4, 3.9, 3.10, 3.11, 4.1, 4.2, 4.3, 5.1, 5.2, 5.6, 5.7_
 
-- [ ] 2. DOT output
-  - [ ] 2.1 Implement `_escape` and the label helper
+- [x] 2. DOT output
+  - [x] 2.1 Implement `_escape` and the label helper
     - Implement `_escape(text)`: backslash to `\\`, double quote to `\"`, then CR LF, CR and LF each to the two characters `\n`
     - Implement `_unit_label(node)`: the label, then each risk in order, joined by the two-character `\n`, all escaped; a node with no risks gets the label alone with no trailing `\n`
     - _Requirements: 2.4, 7.3, 7.4, 10.3, 10.4, 10.6_
 
-  - [ ] 2.2 Implement the statement helpers and `to_dot`
+  - [x] 2.2 Implement the statement helpers and `to_dot`
     - Implement `_node_statement(node)`: one line ending in `];`, id quoted and escaped; unit nodes use `shape=box`, `style="rounded,filled"` and exactly one `color` attribute (purple when safe, red when the node has risks); table nodes use `shape=cylinder`; global nodes use `shape=note`; table and global outlines use a non-red theme colour; look kinds up in constant mappings so an unknown kind raises `KeyError`
     - Implement `_edge_statement(edge)`: one line `"source" -> "target" [color=..., style=..., penwidth=...];` using `EDGE_STYLES[edge.kind]`
     - Implement `to_dot(graph)`: emit `digraph "autopsy" {`, a preamble with exactly one `rankdir=LR`, `bgcolor` and light `fontcolor` on the graph, node defaults and edge defaults (all from `THEME`), then node statements sorted by `(kind, id)`, then edge statements sorted by `(kind, source, target)`, then `}`; use LF as the only separator, two-space indent, and write no braces inside labels; an empty graph still emits the preamble
     - Re-sort inside `to_dot` so that input order never changes the output
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 7.1, 7.2, 7.5, 8.1, 8.2, 8.3, 8.4, 8.7, 9.1, 9.2, 9.3, 9.4, 9.5, 10.1, 10.2, 10.5_
 
-- [ ] 3. Checkpoint - Acceptance tests
+- [x] 3. Checkpoint - Acceptance tests
   - Run `.venv\Scripts\python.exe -m pytest tests/test_autopsy_graph.py -q` from the project root and confirm all 16 tests pass
   - Fix `graph.py` (never the tests) if any test fails, then re-run
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 4. Final checkpoint - Full suite
-  - [ ] 4.1 Run the whole suite and confirm 53 passing tests
+- [x] 4. Final checkpoint - Full suite
+  - [x] 4.1 Run the whole suite and confirm 53 passing tests
     - Run `.venv\Scripts\python.exe -m pytest -q` from the project root
     - Confirm the summary reports 53 passed (37 existing plus 16 in `tests/test_autopsy_graph.py`) with no failures or errors; Oracle tests, if any, may only be counted as skipped if they are not part of the 53, so report the exact summary line
     - Confirm with `git status` that no file under `tests/` was added or changed
