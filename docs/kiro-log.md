@@ -10,3 +10,4 @@
 | 2026-11-14 | Spec | autopsy-scanner: requirements, design, tasks from 26 acceptance tests | tokenizer.py, blocks.py, exhume.py, scanner.py; 26/26 green first full run; tests untouched; ~18 credits |
 | 2026-11-14 | Spec (update) | Code review found 4 scanner gaps (DUAL, EXTRACT/TRIM FROM, datatype sizes, negative literals); added 11 edge tests | Kiro updated requirements + tasks and fixed scanner.py; 37/37 green |
 | 2026-11-14 | Spec (update) | Code review found 4 scanner gaps (DUAL, EXTRACT/TRIM FROM, datatype sizes, negative literals); added 11 edge tests | Kiro added requirements 15-18 + task 6, fixed scanner.py; 37/37 green; 2.37 credits |
+| 2026-11-14 | Spec | dependency-graph: requirements, design, tasks from 16 acceptance tests | 10 requirements; only graph.py planned; ~12 credits so far |
