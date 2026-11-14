@@ -34,6 +34,16 @@ _WHEN = re.compile(
     re.IGNORECASE,
 )
 _OR = re.compile(_NOT_ID_BEFORE + r"OR" + _NOT_ID_AFTER, re.IGNORECASE)
+_DATATYPES = (
+    "VARCHAR2|VARCHAR|NVARCHAR2|CHAR|NCHAR|NUMBER|NUMERIC|DECIMAL|DEC|FLOAT|RAW|TIMESTAMP|UROWID"
+)
+_DATATYPE_SIZE = re.compile(
+    _NOT_ID_BEFORE + r"(?:" + _DATATYPES + r")\s*\(([^()]*)\)", re.IGNORECASE
+)
+_WORD_AT_END = re.compile(r"[A-Za-z0-9_$#]+$")
+_OPERATOR_WORDS = frozenset(
+    {"RETURN", "THEN", "ELSE", "AND", "OR", "NOT", "IN", "WHEN", "BETWEEN", "DEFAULT"}
+)
 _NULL_BODY = re.compile(r"NULL\s*;", re.IGNORECASE)
 
 
@@ -65,16 +75,49 @@ def _masked_with_lines(unit: Unit) -> tuple[str, tuple[int, ...]]:
     return mask(unit.source), line_starts(unit.source)
 
 
+def _datatype_spans(masked: str) -> list[tuple[int, int]]:
+    """Offset ranges inside ``<datatype>( ... )``, where numbers are sizes."""
+    return [(m.start(1), m.end(1)) for m in _DATATYPE_SIZE.finditer(masked)]
+
+
+def _unary_minus_at(masked: str, number_start: int) -> int | None:
+    """Offset of a unary minus sign belonging to the literal at ``number_start``."""
+    j = number_start - 1
+    while j >= 0 and masked[j].isspace():
+        j -= 1
+    if j < 0 or masked[j] != "-":
+        return None
+    before = masked[:j].rstrip()
+    if not before:
+        return j
+    if before[-1] in ")]":
+        return None
+    word = _WORD_AT_END.search(before)
+    if word is None:
+        return j  # an operator or punctuation precedes the minus
+    return j if word.group().upper() in _OPERATOR_WORDS else None
+
+
 def find_constants(masked: str, starts: tuple[int, ...], first_line: int) -> tuple[Constant, ...]:
-    """Numeric literals in masked text, ordered by position."""
-    return tuple(
-        Constant(
-            Decimal(m.group()),
-            first_line + line_of(starts, m.start()) - 1,
-            column_of(starts, m.start()),
+    """Numeric literals in masked text, ordered by position.
+
+    Datatype sizes such as ``VARCHAR2(100)`` are skipped. A unary minus
+    belongs to its literal; subtraction does not.
+    """
+    spans = _datatype_spans(masked)
+    found: list[Constant] = []
+    for m in _NUMBER.finditer(masked):
+        if any(a <= m.start() < b for a, b in spans):
+            continue
+        value = Decimal(m.group())
+        pos = m.start()
+        minus = _unary_minus_at(masked, m.start())
+        if minus is not None:
+            value, pos = -value, minus
+        found.append(
+            Constant(value, first_line + line_of(starts, pos) - 1, column_of(starts, pos))
         )
-        for m in _NUMBER.finditer(masked)
-    )
+    return tuple(found)
 
 
 def find_tables(masked: str) -> tuple[frozenset[str], frozenset[str]]:
@@ -90,9 +133,25 @@ def find_tables(masked: str) -> tuple[frozenset[str], frozenset[str]]:
     read = {
         m.group(2).upper()
         for m in _READ_PATTERN.finditer(masked)
-        if m.start(1) not in claimed
+        if m.start(1) not in claimed and not _in_function_syntax(masked, m.start())
     }
+    read.discard("DUAL")  # Oracle's dummy table is not a business table
     return frozenset(read), frozenset(written)
+
+
+def _in_function_syntax(masked: str, pos: int) -> bool:
+    """True when ``pos`` sits directly inside ``EXTRACT(...)`` or ``TRIM(...)``."""
+    depth = 0
+    for i in range(pos - 1, -1, -1):
+        ch = masked[i]
+        if ch == ")":
+            depth += 1
+        elif ch == "(":
+            if depth == 0:
+                word = _WORD_AT_END.search(masked[:i].rstrip())
+                return word is not None and word.group().upper() in ("EXTRACT", "TRIM")
+            depth -= 1
+    return False
 
 
 def whole_word(name: str) -> re.Pattern[str]:

@@ -228,3 +228,43 @@ The acceptance tests are in `tests/test_autopsy_scanner.py` and are not modified
 4. THE Scanner feature SHALL leave `tests/test_autopsy_scanner.py` byte-identical to its original content.
 5. WHEN `.venv\Scripts\python.exe -m pytest -q` is run with `ORACLE_DSN` unset, THE test suite SHALL pass every test in `tests/test_autopsy_scanner.py` with zero failed, errored and skipped tests.
 6. IF any test in `tests/test_autopsy_scanner.py` fails, THEN THE test run SHALL exit with a non-zero status and name each failing test.
+
+### Requirement 15: DUAL is not a table
+
+**User Story:** As a migration engineer, I want Oracle's dummy table left out of the dependency graph, so that no fake table appears.
+
+#### Acceptance Criteria
+
+1. WHEN Live_Code contains `FROM DUAL` or `JOIN DUAL`, in any letter case and with or without a schema prefix, THE Scanner SHALL omit `DUAL` from `tables_read`.
+2. WHEN a unit also reads other tables, THE Scanner SHALL still report those tables.
+
+### Requirement 16: FROM inside EXTRACT and TRIM is not a table read
+
+**User Story:** As a migration engineer, I want function syntax kept out of the table list, so that `EXTRACT(YEAR FROM d)` does not create a table called `d`.
+
+#### Acceptance Criteria
+
+1. WHEN `FROM` appears directly inside the parentheses of `EXTRACT(...)` or `TRIM(...)` in Live_Code, THE Scanner SHALL omit the word after it from `tables_read`.
+2. WHEN a real `FROM` or `JOIN` appears in the same statement outside those parentheses, or inside the parentheses of a subquery, THE Scanner SHALL still report its table.
+3. THE Scanner SHALL match `EXTRACT` and `TRIM` case-insensitively and as whole words.
+
+### Requirement 17: Datatype sizes are not constants
+
+**User Story:** As a migration engineer, I want `VARCHAR2(100)` and `NUMBER(12,2)` kept out of the business constants, so that column sizes are not mistaken for rules.
+
+#### Acceptance Criteria
+
+1. WHEN a numeric literal sits inside the parentheses that directly follow a datatype name (`VARCHAR2`, `VARCHAR`, `NVARCHAR2`, `CHAR`, `NCHAR`, `NUMBER`, `NUMERIC`, `DECIMAL`, `DEC`, `FLOAT`, `RAW`, `TIMESTAMP`, `UROWID`), THE Scanner SHALL omit it from `constants`.
+2. WHEN a numeric literal is an argument of an ordinary function such as `SUBSTR(v, 1, 4)`, THE Scanner SHALL report it.
+3. THE Scanner SHALL match the datatype names case-insensitively and as whole words, so `TO_NUMBER(5)` still reports 5.
+
+### Requirement 18: Sign of a numeric literal
+
+**User Story:** As a migration engineer, I want `-250` reported as minus 250 and `a - 1` as plain 1, so that constants carry the real value of the rule.
+
+#### Acceptance Criteria
+
+1. WHEN a minus sign is a unary operator, THE Scanner SHALL report the literal with a negative `Decimal` value, and SHALL set `line` and `col` to the position of the minus sign. A minus is unary when the previous code character is not an operand end (an identifier character, a digit or `)`), or when the previous word is one of `RETURN`, `THEN`, `ELSE`, `AND`, `OR`, `NOT`, `IN`, `WHEN`, `BETWEEN`, `DEFAULT`.
+2. WHEN a minus sign is a binary subtraction (`a - 1`, `v-2`), THE Scanner SHALL report the literal as positive.
+3. Whitespace between a unary minus and its literal SHALL not change the result.
+4. Examples: `< -1` gives -1, `:= -250` gives -250, `ROUND(x, -2)` gives -2, `x * -0.5` gives -0.5.

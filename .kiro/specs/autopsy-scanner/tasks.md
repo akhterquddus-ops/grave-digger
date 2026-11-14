@@ -128,12 +128,29 @@ All code is Python 3.12 with type hints, frozen dataclasses and the standard lib
     - **Property 16: Scanning is deterministic**
     - **Validates: Requirements 14.2**
 
-- [x] 6. FINAL: Run the full test suite
+- [x] 6. Fix edge cases found in review (pinned by `tests/test_autopsy_scanner_edge.py`, never edited)
+  - [x] 6.1 Ignore DUAL in `find_tables`
+    - Drop `DUAL` from `tables_read` after matching.
+    - _Requirements: 15.1, 15.2_
+
+  - [x] 6.2 Ignore FROM inside EXTRACT and TRIM in `find_tables`
+    - For each read match, find the parenthesis that directly encloses it; skip the match when the word before that `(` is `EXTRACT` or `TRIM`.
+    - _Requirements: 16.1, 16.2, 16.3_
+
+  - [x] 6.3 Ignore datatype sizes in `find_constants`
+    - Find `<datatype>(...)` spans on masked text and skip literals inside them.
+    - _Requirements: 17.1, 17.2, 17.3_
+
+  - [x] 6.4 Keep the sign of unary minus in `find_constants`
+    - Look back from each literal for a `-`. It is unary unless the previous code character ends an operand, with the keyword exceptions in Requirement 18.1. Report the negative value at the minus position.
+    - Run `.venv\Scripts\python.exe -m pytest -q tests/test_autopsy_scanner_edge.py` and fix any failure.
+    - _Requirements: 18.1, 18.2, 18.3, 18.4_
+- [x] 7. FINAL: Run the full test suite
   - The terminal is unavailable in this environment. Ask the user to run `.venv\Scripts\python.exe -m pytest -q` from the project root with `ORACLE_DSN` unset, and to paste the full output back.
   - Read the output. For every failed, errored or skipped test in `tests/test_autopsy_scanner.py`, find the cause and fix the source code under `src/gravedigger/`. Never edit `tests/test_autopsy_scanner.py`.
   - For a failing property test, fix the code if the counterexample shows a real bug, or fix the new test file if the generator is wrong.
   - Ask the user to run the command again after each fix, until the output shows zero failures, zero errors and zero skips for `tests/test_autopsy_scanner.py`.
-  - _Requirements: 14.4, 14.5, 14.6_
+  - _Requirements: 14.4, 14.5, 14.6, 15.1, 16.1, 17.1, 18.1_
 
 ## Notes
 
@@ -155,7 +172,11 @@ All code is Python 3.12 with type hints, frozen dataclasses and the standard lib
     { "id": 5, "tasks": ["4.2"] },
     { "id": 6, "tasks": ["4.3"] },
     { "id": 7, "tasks": ["5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "5.9", "5.10", "5.11", "5.12", "5.13", "5.14", "5.15", "5.16"] },
-    { "id": 8, "tasks": ["6"] }
+    { "id": 8, "tasks": ["6.1"] },
+    { "id": 9, "tasks": ["6.2"] },
+    { "id": 10, "tasks": ["6.3"] },
+    { "id": 11, "tasks": ["6.4"] },
+    { "id": 12, "tasks": ["7"] }
   ]
 }
 ```
