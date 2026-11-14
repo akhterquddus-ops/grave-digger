@@ -11,3 +11,4 @@
 | 2026-11-14 | Spec (update) | Code review found 4 scanner gaps (DUAL, EXTRACT/TRIM FROM, datatype sizes, negative literals); added 11 edge tests | Kiro updated requirements + tasks and fixed scanner.py; 37/37 green |
 | 2026-11-14 | Spec (update) | Code review found 4 scanner gaps (DUAL, EXTRACT/TRIM FROM, datatype sizes, negative literals); added 11 edge tests | Kiro added requirements 15-18 + task 6, fixed scanner.py; 37/37 green; 2.37 credits |
 | 2026-11-14 | Spec | dependency-graph: requirements, design, tasks from 16 acceptance tests | 10 requirements; only graph.py planned; ~12 credits so far |
+| 2026-11-14 | Spec | autopsy-explain: requirements started; Kiro paused because the test file was missing instead of guessing the contract | requirements.md; 2.87 credits |
