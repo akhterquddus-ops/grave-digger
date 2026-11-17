@@ -14,6 +14,8 @@ dependencies = [
     "oracledb==3.4.0",    # PINNED: newer wheels are blocked by Windows Smart App Control (no reputation yet)
     "mcp>=2,<3",          # MCP server for Kiro (MCPServer API)
     "streamlit>=1.40",    # public UI
+    "anthropic==2.8.0",   # PINNED: tool_use/tool_choice request shape was checked against this release; imported lazily by explain.py
+    "openai==3.51.0",     # PINNED: backup provider; json_object response_format and max_completion_tokens checked against this release
 ]
 
 [project.optional-dependencies]
