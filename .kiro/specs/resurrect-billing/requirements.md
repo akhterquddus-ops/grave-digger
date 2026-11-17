@@ -106,7 +106,7 @@ Legacy source: `BILLING_PKG.p_taxes`, pkb lines 108-113.
 
 1. THE Billing_Port function `taxes` SHALL return a tuple `(ed, gst)` of `Decimal` values.
 2. THE Billing_Port function `taxes` SHALL compute ED as the energy charge multiplied by 0.015, rounded to 2 decimal places using Round_Half_Up (pkb line 111).
-3. LEGACY QUIRK (pkb lines 106-107 and 112, tax on tax): THE Billing_Port function `taxes` SHALL compute GST as (energy charge plus fixed charge plus fuel price adjustment plus the already rounded ED) multiplied by 0.17, rounded to 2 decimal places using Round_Half_Up.
+3. LEGACY QUIRK (pkb lines 105-106 and 112, tax on tax): THE Billing_Port function `taxes` SHALL compute GST as (energy charge plus fixed charge plus fuel price adjustment plus the already rounded ED) multiplied by 0.17, rounded to 2 decimal places using Round_Half_Up.
 4. THE Billing_Port function `taxes` SHALL reproduce the Oracle results ED 1.50 and GST 17.26 for an energy charge of 100 with no fixed charge and no fuel price adjustment.
 
 ### Requirement 6: Due date (f_due_dt)
@@ -141,12 +141,12 @@ Legacy source: `BILLING_PKG.f_lps`, pkb lines 131-141.
 
 **User Story:** As a billing analyst, I want a pure bill calculation that combines all units, so that I can compare Python bills with Oracle bills field by field.
 
-Legacy source: `BILLING_PKG.p_gen_bill`, pkb lines 146-207. The Billing_Port covers the calculation only, in lines 170-193. Database reads (lines 163-183), the INSERT (lines 195-198) and the debug output are outside this port.
+Legacy source: `BILLING_PKG.p_gen_bill`, pkb lines 146-207. The Billing_Port covers the calculation only, in lines 170-193. Database reads (lines 162-183), the INSERT (lines 195-198) and the debug output are outside this port.
 
 #### Acceptance Criteria
 
 1. WHEN a Bill_Input is supplied, THE Billing_Port function `generate_bill` SHALL return a Bill whose fields are produced by chaining `units`, `energy_charge`, `fixed_charge`, `fpa`, `taxes`, `due_date` and `lps` in the legacy order (pkb lines 170-184).
-2. WHEN the tariff is `A1`, THE Billing_Port function `generate_bill` SHALL set the TV fee to 35, and WHEN the tariff is any other value, THE Billing_Port function `generate_bill` SHALL set the TV fee to 60 (pkb lines 188-192).
+2. WHEN the tariff is `A1`, THE Billing_Port function `generate_bill` SHALL set the TV fee to 35, and WHEN the tariff is any other value, THE Billing_Port function `generate_bill` SHALL set the TV fee to 60 (pkb lines 187-191).
 3. LEGACY QUIRK (pkb line 187, TV fee is not taxed): THE Billing_Port function `generate_bill` SHALL exclude the TV fee from the GST base.
 4. LEGACY QUIRK (pkb line 193, total rounded half up): THE Billing_Port function `generate_bill` SHALL compute the total as the sum of energy charge, fixed charge, fuel price adjustment, ED, GST, TV fee and surcharge, rounded to 0 decimal places using Round_Half_Up. A sum of 9048.50 SHALL give a total of 9049.
 5. THE Billing_Port function `generate_bill` SHALL reproduce the five seed bills 1001 to 1005 verified in Oracle, matching every field of Bill exactly.

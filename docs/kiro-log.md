@@ -19,3 +19,4 @@
 | 2026-11-17 | Answer key | tests/test_autopsy_quality.py: 8 planted rules vs cached Claude autopsy | v1 prompt scores 8/8 |
 | 2026-11-17 | Experiment | Prompt v2 (one fact per rule, cite only live lines) scored 4/8: empty rule lists for simple units. Reverted to v1 (8/8); kept the ELSE evidence fix | decision rule held: never trade coverage for wording |
 | 2026-11-18 | Spec + MCP | resurrect-billing: 8 per-unit requirement sections; Kiro cross-checked 5 legacy calls in real Oracle via MCP before designing | billing.py port; 117 tests green |
+| 2026-11-18 | Spec | resurrect-billing tasks run: port in billing.py; Kiro's review task caught wrong line numbers in its own spec and fixed docstrings to match the legacy file | 117 tests green; 17.19 credits |

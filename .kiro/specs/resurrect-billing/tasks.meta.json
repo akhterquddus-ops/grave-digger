@@ -1,0 +1,268 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create `src/gravedigger/resurrected/billing.py` with imports, `_TWO_PLACES`, `_ZERO_PLACES` and `_round`": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943618898
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943624834
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943651921
+      }
+    ],
+    "1.2 Add frozen dataclasses `BillInput` and `Bill`": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943618975
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943654865
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943687696
+      }
+    ],
+    "2.1 Implement `units(prev, curr, mf)` (f_units, pkb lines 18-31)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619027
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943690753
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943738930
+      }
+    ],
+    "2.2 Implement `energy_charge(tariff, units)` (f_enrg_chg, pkb lines 38-65)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619075
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943741719
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943777238
+      }
+    ],
+    "2.3 Implement `fixed_charge(tariff, load_kw, enrg)` (f_fix_chg, pkb lines 72-88)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619122
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943780042
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943808937
+      }
+    ],
+    "2.4 Implement `fpa(units, rate)` (f_fpa, pkb lines 93-102)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619163
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943812009
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943854633
+      }
+    ],
+    "3. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619209
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944137987
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944150750
+      }
+    ],
+    "4.1 Implement `taxes(enrg, fix, fpa)` (p_taxes, pkb lines 108-113)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619258
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943863043
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943902164
+      }
+    ],
+    "4.2 Implement `due_date(rdg_dt)` (f_due_dt, pkb lines 118-126)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619322
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943905106
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943931922
+      }
+    ],
+    "4.3 Implement `lps(enrg, due_dt, pay_dt)` (f_lps, pkb lines 131-141)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619365
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943935063
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943963719
+      }
+    ],
+    "5.1 Implement `generate_bill(inp)` (p_gen_bill, pkb lines 146-207, calculation 170-193)": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619409
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943966681
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944012290
+      }
+    ],
+    "6.1 Review `billing.py` against the cross-cutting rules and fix any gap in the module only": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619457
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944015179
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944114920
+      }
+    ],
+    "7.1 Run `.venv\\Scripts\\python.exe -m pytest -q` and expect all green": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943619509
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944118034
+      },
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944133710
+      }
+    ],
+    "1. Create the module skeleton, dataclasses and rounding helper": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943687811
+      }
+    ],
+    "2. Port the meter and charge units": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943854698
+      }
+    ],
+    "4. Port tax and date units": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794943963783
+      }
+    ],
+    "5. Port bill generation": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944012361
+      }
+    ],
+    "6. Check docstring, float and round rules": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944114991
+      }
+    ],
+    "7. Final checkpoint - Run the full suite": [
+      {
+        "executionId": "34989b53-6614-40a3-8d6d-f534cc53133e",
+        "chatSessionId": "sess_0b422714-2a82-47da-8db7-88922cea3286",
+        "timestamp": 1794944133768
+      }
+    ]
+  }
+}
