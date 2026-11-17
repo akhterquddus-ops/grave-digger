@@ -35,6 +35,7 @@ The feature also adds the `anthropic` and `openai` SDKs to `pyproject.toml`, and
 - **Explanation**: A frozen dataclass with `unit` (the Unit name, a `str`), `summary` (text), `rules` (a tuple of kept Rules), `dropped` (a tuple of Dropped) and `source` (`llm`, `cache` or `static`).
 - **Live_Code**: The lines of a Unit that are neither blank, nor comments, nor commented-out code.
 - **Evidence_Lines**: The result of `evidence_lines(unit)`: the file line numbers of Live_Code that carry at least one fact.
+- **Boundary_Number**: A number that is one more than a literal `c` in a comparison `> c`, or one less than a literal `c` in a comparison `< c`, on an Evidence_Lines line of the Unit. It is the first or last whole value of a slab (for `> 100`, the number 101).
 - **Fact_Carrier**: A numeric constant, a table read or written, a string literal, a call to a sibling unit, an `IF` or `ELSIF` branch, or an exception handler (`WHEN ... THEN` inside an `EXCEPTION` section, and the `EXCEPTION` keyword line).
 - **Number_Token**: A number in the text of a Rule. A digit sequence glued to letters or underscores, such as the `2` in `A2` or in `p_2`, is part of a name and is not a Number_Token.
 - **Code_Numbers**: The set of numbers allowed in Rule text: the value and the absolute value of every Constant in `Facts.constants`, and every number inside the strings of `Facts.string_literals`.
@@ -98,7 +99,7 @@ The feature also adds the `anthropic` and `openai` SDKs to `pyproject.toml`, and
 1. WHEN a Rule, a Unit and its Facts are passed to the Guardrail, THE Guardrail SHALL return `None` when the Rule is kept, and a non-empty plain-English reason when the Rule is dropped.
 2. IF the `lines` of a Rule are empty, THEN THE Guardrail SHALL drop the Rule with a reason that says no line is cited.
 3. IF a cited line is below `Unit.start_line` or above `Unit.end_line`, THEN THE Guardrail SHALL drop the Rule with a reason that names the line number and says the line is outside the unit.
-4. IF a cited line is inside the Unit and is not in Evidence_Lines, THEN THE Guardrail SHALL drop the Rule with a reason that names the line number and says the line is not live code with a fact.
+4. IF none of the cited lines is in Evidence_Lines, THEN THE Guardrail SHALL drop the Rule with a reason that names the cited lines and says that none of them is live code with a fact. A cited line that is inside the Unit but not in Evidence_Lines (for example the continuation line or the closing line of a statement) SHALL NOT by itself cause a drop, as long as at least one cited line is in Evidence_Lines.
 5. IF the `text` of a Rule contains a line reference such as `line 42`, `lines 10-12`, `L42` or `ll. 42`, in any letter case, THEN THE Guardrail SHALL drop the Rule with a reason that says line numbers belong in the citation, not in the text.
 6. IF the `text` of a Rule contains a Number_Token that is not in Code_Numbers and not in Percentage_Form of a Code_Numbers value, THEN THE Guardrail SHALL drop the Rule with a reason that names the unknown number.
 7. WHEN the `text` of a Rule contains a percentage such as `17%` and Code_Numbers contains `0.17`, THE Guardrail SHALL accept that number.
@@ -106,12 +107,18 @@ The feature also adds the `anthropic` and `openai` SDKs to `pyproject.toml`, and
 9. THE Guardrail SHALL compare numbers by value, so that `5`, `5.0` and `5.00` are the same number.
 10. THE Guardrail SHALL accept a number whose value or absolute value equals the value of a Constant, so that the text `5` is accepted for the constant `-5`.
 11. WHEN the `text` of a Rule contains no Number_Token, THE Guardrail SHALL apply only the checks of criteria 2 to 5.
-12. WHEN every cited line is in Evidence_Lines, the text has no line reference, and every Number_Token is in Code_Numbers or in Percentage_Form, THE Guardrail SHALL keep the Rule.
+12. WHEN every cited line is inside the Unit, at least one cited line is in Evidence_Lines, the text has no line reference, and every Number_Token is allowed (in Code_Numbers, in Percentage_Form, zero, or a Boundary_Number, as criteria 7, 10, 18 and 19 define), THE Guardrail SHALL keep the Rule.
 13. WHEN the Unit is `f_enrg_chg`, THE Guardrail SHALL keep the Rule "Above 300 units, every unit is charged Rs 22, not just the units above 300." citing lines 42 and 44, and the Rule "Shops (tariff A2) pay a flat Rs 25 per unit." citing line 56.
 14. WHEN the Unit is `f_enrg_chg`, THE Guardrail SHALL drop a Rule with the number 24 that cites line 44, a Rule with the number 15.50 that cites the commented-out line 48, a Rule that cites line 76 (outside the unit), and a Rule that cites no line.
 15. WHEN the Unit is `p_taxes`, THE Guardrail SHALL keep the Rule "GST is 17% of energy, fixed charge, fuel adjustment and duty together." citing line 112, and SHALL drop the same Rule with `16%`.
 16. WHEN the Explainer returns an Explanation, THE Explainer SHALL have run the Guardrail on every Rule of that Explanation, whether the Rule came from the LLM_Client, from the Cache or from a Static_Explanation.
 17. THE Guardrail SHALL be a pure function: it SHALL read no file and use no network.
+18. THE Guardrail SHALL accept the number `0` in the text of a Rule in every Unit, whether or not `0` is a Constant.
+19. THE Guardrail SHALL accept a Boundary_Number: a number equal to `c + 1` when the live code of the Unit compares with `> c` on a line in Evidence_Lines, and a number equal to `c - 1` when it compares with `< c` on such a line, where `c` is a numeric literal. The operators `>=` and `<=` SHALL NOT create a Boundary_Number. Numbers SHALL be compared by value as Decimal, and comments and string literals SHALL NOT count as code.
+20. WHEN the Unit is `p_gen_bill`, THE Guardrail SHALL keep the Rule "Any other error is silently ignored." citing lines 204, 205 and 206, and SHALL drop a Rule citing lines 204 and 300 (line 300 is outside the Unit).
+21. WHEN the Unit is `f_enrg_chg`, THE Guardrail SHALL keep the Rule "Units 101 to 200 are charged Rs 13." citing lines 49 and 50 (101 is 100 + 1, because line 49 compares with `> 100`), and SHALL still drop the Rule "Above 300 units the rate is Rs 24." citing line 44 (24 is not a Constant and not a Boundary_Number).
+22. WHEN the Unit is `f_lps`, THE Guardrail SHALL keep the Rule "No surcharge (0) if paid on time." citing line 139.
+23. THE tests for criteria 18 to 22 SHALL be in `tests/test_autopsy_explain_guardrail.py`, a new file. The existing test files SHALL NOT be modified.
 
 ### Requirement 4: LLM provider interface and client factory
 

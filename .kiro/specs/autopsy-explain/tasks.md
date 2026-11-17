@@ -173,6 +173,35 @@ Scope for this plan:
     - If the first real run (after the user approves) returns an HTTP 400 about `tool_choice`, apply the design's fallback: set `tool_choice` to `{"type": "any"}` in `AnthropicClient`
     - _Requirements: 9.4, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6_
 
+- [x] 16. Loosen the guardrail (test-first)
+  - [x] 16.1 Write the new guardrail tests
+    - Create `tests/test_autopsy_explain_guardrail.py` (a NEW file; edit no existing test file). Load `BILLING_PKG` like `tests/test_autopsy_explain.py` does (same helpers or fixtures, copied, not imported by editing that file)
+    - Cases, each calling `check_rule(rule, unit, facts)`:
+      - `p_gen_bill`, "Any other error is silently ignored.", lines `(204, 205, 206)`: KEPT (`None`)
+      - `f_enrg_chg`, "Units 101 to 200 are charged Rs 13.", lines `(49, 50)`: KEPT
+      - `f_enrg_chg`, "Above 300 units the rate is Rs 24.", lines `(44,)`: DROPPED, and the reason names 24
+      - `p_gen_bill`, any plain text without numbers, lines `(204, 300)`: DROPPED, reason says outside the unit
+      - `f_lps`, "No surcharge (0) if paid on time.", lines `(139,)`: KEPT
+    - Run the file and confirm that the first, second and fifth cases FAIL on the current code and the third and fourth pass (test-first)
+    - _Requirements: 3.18, 3.19, 3.20, 3.21, 3.22, 3.23_
+
+  - [x] 16.2 Change `check_rule` and `_check`
+    - Check order: no line cited; any cited line outside the unit (name the line); none of the cited lines in `evidence_lines` (reason keeps the phrase "not live code with a fact" and names the lines); line reference in the text; unknown number
+    - Add a helper that finds Boundary_Numbers: search the masked source (comments and strings blanked), only on lines in the evidence set, for `>` and `<` followed by a numeric literal (not `>=`, `<=`, `<>`, `=>`, `<<` or `>>`), and return `{c + 1}` for `>` and `{c - 1}` for `<`, built with `Decimal` from strings; no `float`
+    - Add `Decimal("0")` to the allowed numbers; the percentage rule stays as it is
+    - Update the docstrings. Keep `_judge` and the reason texts of the other checks unchanged. `static_rules` still passes the guardrail
+    - Do not edit any existing test file
+    - _Requirements: 3.4, 3.12, 3.18, 3.19_
+
+  - [x] 16.3 Run the whole suite
+    - Run `.venv\Scripts\python.exe -m pytest -q` and confirm that all tests pass: 74 existing plus the new ones from 16.1
+    - Confirm with `git status --short tests` that only `tests/test_autopsy_explain_guardrail.py` is new and no existing test file changed
+    - _Requirements: 12.1, 12.2, 3.23_
+
+  - [x] 16.4 Re-run the sample script from the cache
+    - Run `.venv\Scripts\python.exe scripts\explain_sample.py` once. The cache in `golden/autopsy` holds the answers and the guardrail runs again on cached rules, so the run must make no API call. Confirm that all eight units report `source: cache` and that no `LLM call failed` line appears, then report the kept and dropped rules for each unit
+    - _Requirements: 3.16, 7.3, 11.5_
+
 ## Notes
 
 - This plan has no test sub-tasks and no optional (`*`) tasks. The design's properties stay in prose, and the 21 existing acceptance tests plus the checkpoint runs are the verification (requirement 12.5).
@@ -202,7 +231,11 @@ Scope for this plan:
     { "id": 14, "tasks": ["11.4"] },
     { "id": 15, "tasks": ["13.1"] },
     { "id": 16, "tasks": ["14.1"] },
-    { "id": 17, "tasks": ["15.1"] }
+    { "id": 17, "tasks": ["15.1"] },
+    { "id": 18, "tasks": ["16.1"] },
+    { "id": 19, "tasks": ["16.2"] },
+    { "id": 20, "tasks": ["16.3"] },
+    { "id": 21, "tasks": ["16.4"] }
   ]
 }
 ```

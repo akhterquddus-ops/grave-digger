@@ -212,23 +212,52 @@ def _plain(d: Decimal) -> str:
     return "0" if d == 0 else format(d.normalize(), "f")
 
 
+# A comparison against a numeric literal: "> 100" (not >=, <>, =>, >>) or "< 75" (not <=, <>, <<).
+_GREATER = re.compile(r"(?<![<>=!~^])>(?![=>])\s*(\d+(?:\.\d+)?)(?![A-Za-z0-9_$#])")
+_LESS = re.compile(r"(?<![<>])<(?![=<>])\s*(\d+(?:\.\d+)?)(?![A-Za-z0-9_$#])")
+
+
+def _boundary_numbers(unit: Unit, ev: frozenset[int]) -> frozenset[Decimal]:
+    """Boundary_Numbers: c + 1 for ``> c`` and c - 1 for ``< c`` on evidence lines.
+
+    Searches the masked source (comments and strings blanked), so commented-out
+    code never counts. A rule may say "101 to 200" for ``IF x > 100 ... <= 200``.
+    """
+    one = Decimal("1")
+    found: set[Decimal] = set()
+    for i, text in enumerate(_masked_lines(unit)):
+        if unit.start_line + i not in ev:
+            continue
+        for m in _GREATER.finditer(text):
+            found.add(Decimal(m.group(1)) + one)
+        for m in _LESS.finditer(text):
+            found.add(Decimal(m.group(1)) - one)
+    return frozenset(found)
+
+
 def _check(rule: Rule, unit: Unit, facts: Facts, ev: frozenset[int]) -> str | None:
-    """Guardrail body: five checks in a fixed order, first failure wins."""
+    """Guardrail body: five checks in a fixed order, first failure wins.
+
+    1. a line is cited; 2. every cited line is inside the unit; 3. at least one
+    cited line is live code with a fact; 4. the text holds no line reference;
+    5. every number is a code constant, 0, a percentage form of a constant, or a
+    Boundary_Number.
+    """
     if not rule.lines:
         return "It cites no line of the code."
     ordered = sorted(rule.lines)
     for n in ordered:
         if n < unit.start_line or n > unit.end_line:
             return f"Line {n} is outside the unit (lines {unit.start_line}-{unit.end_line})."
-    for n in ordered:
-        if n not in ev:
-            return (
-                f"Line {n} is not live code with a fact (it may be a comment, a blank line, "
-                "or code without a number, table, call, branch or handler)."
-            )
+    if not any(n in ev for n in ordered):
+        cited = ", ".join(str(n) for n in ordered)
+        return (
+            f"Lines {cited} are not live code with a fact (they may be comments, blank "
+            "lines, or code without a number, table, call, branch or handler)."
+        )
     if _LINE_REF.search(rule.text):
         return "The text mentions line numbers. Line numbers belong in the citation, not in the text."
-    allowed = _code_numbers(facts)
+    allowed = _code_numbers(facts) | {Decimal("0")} | _boundary_numbers(unit, ev)
     for token, is_percent in _number_tokens(rule.text):
         value = Decimal(token)
         if value in allowed:

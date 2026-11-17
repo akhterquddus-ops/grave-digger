@@ -458,6 +458,81 @@
         "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
         "timestamp": 1794939873402
       }
+    ],
+    "16.1 Write the new guardrail tests": [
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940794099
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940797553
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940832103
+      }
+    ],
+    "16.2 Change `check_rule` and `_check`": [
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940794175
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940835376
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940892393
+      }
+    ],
+    "16.3 Run the whole suite": [
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940794228
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940895679
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940921807
+      }
+    ],
+    "16.4 Re-run the sample script from the cache": [
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940794277
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794940929032
+      },
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941004351
+      }
+    ],
+    "16. Loosen the guardrail (test-first)": [
+      {
+        "executionId": "88b4d534-0c5d-4d21-b51d-6a9eeb8309f5",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941004444
+      }
     ]
   }
 }
