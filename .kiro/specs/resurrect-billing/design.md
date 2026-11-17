@@ -54,7 +54,7 @@ All line numbers refer to `legacy/billing_pkg.pkb`. Ranges are the function bodi
 | `energy_charge` | `f_enrg_chg` | 38-65 | 43-44 cliff; 58-59 unknown tariff |
 | `fixed_charge` | `f_fix_chg` | 72-88 | 79-80 minimum charge |
 | `fpa` | `f_fpa` | 93-102 | 99-101 `NO_DATA_FOUND` default |
-| `taxes` | `p_taxes` | 108-113 | 106-107, 112 tax on tax |
+| `taxes` | `p_taxes` | 108-113 | 105-106, 112 tax on tax |
 | `due_date` | `f_due_dt` | 118-126 | 122-124 Sunday shift |
 | `lps` | `f_lps` | 131-141 | 136 time of day counts; 137 energy base only |
 | `generate_bill` | `p_gen_bill` | 146-207 (calculation 170-193) | 187 TV not taxed; 193 total half up; 205-206 `WHEN OTHERS` |
@@ -131,7 +131,7 @@ The parameter name `units` in `energy_charge` and `fpa`, and `fpa` in `taxes`, s
 
 **`fpa`** (pkb 93-102). `None` returns `Decimal("0")`, with a comment that this mirrors the legacy `NO_DATA_FOUND` handler (lines 99-101). Otherwise `_round(units * rate, _TWO_PLACES)`.
 
-**`taxes`** (pkb 108-113). `ed = _round(enrg * Decimal("0.015"), _TWO_PLACES)`, then `gst = _round((enrg + fix + fpa + ed) * Decimal("0.17"), _TWO_PLACES)`. The already rounded `ed` is part of the GST base. LEGACY QUIRK: tax on tax (lines 106-107, 112). Returns `(ed, gst)`.
+**`taxes`** (pkb 108-113). `ed = _round(enrg * Decimal("0.015"), _TWO_PLACES)`, then `gst = _round((enrg + fix + fpa + ed) * Decimal("0.17"), _TWO_PLACES)`. The already rounded `ed` is part of the GST base. LEGACY QUIRK: tax on tax (lines 105-106, 112). Returns `(ed, gst)`.
 
 **`due_date`** (pkb 118-126). `d = rdg_dt.date() + timedelta(days=14)`. If `d.weekday() == 6` (Sunday), add one day. `weekday()` is a pure calendar computation, so the result cannot depend on locale; this replaces `TO_CHAR(..., 'DY', 'NLS_DATE_LANGUAGE=ENGLISH')`. `strftime("%a")` must not be used. LEGACY QUIRK: Sunday shift (lines 122-124).
 
@@ -157,7 +157,7 @@ It returns `Bill(n_unt, v_enrg, v_fix, v_fpa, v_ed, v_gst, v_tv, v_lps, n_tot, d
 
 | Type | Kind | Notes |
 |---|---|---|
-| `BillInput` | frozen dataclass | Inputs after the database reads at pkb 163-183. `prev_rdg` and `curr_rdg` are `int`. All other numbers are `Decimal`. |
+| `BillInput` | frozen dataclass | Inputs after the database reads at pkb 162-183. `prev_rdg` and `curr_rdg` are `int`. All other numbers are `Decimal`. |
 | `Bill` | frozen dataclass | Equivalent to one `BILL_HDR` row without `cust_no`, `bill_mon` and `gen_dt`. Money and `units` are `Decimal`. `due_dt` is `date`. |
 
 Frozen dataclasses give value equality, so the Prove phase can compare whole bills with `==` and also field by field.
@@ -286,4 +286,4 @@ The Oracle comparison belongs to the next spec. It will run the same `BillInput`
 
 ### Out of scope
 
-Database reads and the `INSERT` (pkb 163-183, 195-198), debug output (`g_dbg`), and the `WHEN OTHERS` swallow are not ported. Cleanup of quirks is not done here, because identical behaviour comes first (migration rules).
+Database reads and the `INSERT` (pkb 162-183, 195-198), debug output (`g_dbg`), and the `WHEN OTHERS` swallow are not ported. Cleanup of quirks is not done here, because identical behaviour comes first (migration rules).

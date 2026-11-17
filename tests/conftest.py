@@ -1,7 +1,7 @@
 """Shared test settings.
 
 Hypothesis profiles (pick with HYPOTHESIS_PROFILE=ci):
-  dev = 200 examples (default, used by the Kiro on-save hook)
+  dev = 200 examples, no deadline (default, used by the Kiro on-save hook)
   ci  = 2000 examples, fixed seed, no deadline
 Tests marked @pytest.mark.oracle are skipped when no Oracle settings are available.
 """
@@ -19,7 +19,7 @@ from gravedigger.config import setting
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LEGACY = REPO_ROOT / "legacy"
 
-settings.register_profile("dev", max_examples=200)
+settings.register_profile("dev", max_examples=200, deadline=None)
 settings.register_profile("ci", max_examples=2000, derandomize=True, deadline=None)
 settings.load_profile(os.environ.get("HYPOTHESIS_PROFILE", "dev"))
 

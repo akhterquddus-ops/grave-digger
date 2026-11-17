@@ -1,0 +1,289 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "0.1 Set `deadline=None` on the `dev` and `ci` profiles in `tests/conftest.py`": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909247
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945917680
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945995282
+      }
+    ],
+    "1.1 Create `src/gravedigger/prove/compare.py` with `FieldDiff` and `diff`": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909326
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945917929
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945995494
+      }
+    ],
+    "2.1 Create `src/gravedigger/prove/oracle_runner.py` with `run_oracle`": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909414
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945918356
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945996101
+      }
+    ],
+    "3.1 Create `src/gravedigger/prove/strategies.py` with legal ranges and the overflow filter": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909462
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946000065
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946042194
+      }
+    ],
+    "3.2 Add the edge-scenario weighting to `bill_inputs`": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909530
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946045623
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946255923
+      }
+    ],
+    "4. Checkpoint - Run the non-Oracle tests": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909620
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946271255
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946305666
+      }
+    ],
+    "5.1 Start the Oracle container": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909715
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946271298
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946306046
+      }
+    ],
+    "5.2 Run the tests marked `oracle`": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909802
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946309343
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946333796
+      }
+    ],
+    "6.1 Query the database with the grave-digger-oracle MCP `run_sql` tool": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909887
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946337383
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946360166
+      }
+    ],
+    "7.1 Edit `.kiro/specs/resurrect-billing/design.md` (text only)": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945909983
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945918894
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945996615
+      }
+    ],
+    "7.2 Verify the edit by search": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945910074
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946000315
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946042660
+      }
+    ],
+    "8.1 Append an entry to `docs/kiro-log.md`": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945910129
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946363717
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946426089
+      }
+    ],
+    "9.1 Run the whole suite and write the final report": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945910214
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946429324
+      },
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946477171
+      }
+    ],
+    "0. Disable the Hypothesis deadline": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945995324
+      }
+    ],
+    "1. Implement the field-by-field comparison": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945995543
+      }
+    ],
+    "2. Implement the Oracle runner": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794945996130
+      }
+    ],
+    "7. Fix the stale line numbers in the resurrect-billing design": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946042687
+      }
+    ],
+    "3. Implement the input strategy": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946256013
+      }
+    ],
+    "5. Run the Oracle tests": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946333872
+      }
+    ],
+    "6. Verify the probe customer left no trace": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946360225
+      }
+    ],
+    "8. Write the Kiro log entry": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946426133
+      }
+    ],
+    "9. Final run and report": [
+      {
+        "executionId": "ef87c69b-7cb2-4e54-bbe8-36e1334e14e1",
+        "chatSessionId": "sess_d8634910-1e60-4bef-80bf-6ab80657a7a7",
+        "timestamp": 1794946477229
+      }
+    ]
+  }
+}
