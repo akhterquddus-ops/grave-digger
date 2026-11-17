@@ -1,5 +1,0 @@
-{
-  "unit": "f_units",
-  "summary": "This unit works out how many billable units a customer used between two meter readings, multiplying the difference by a multiplier.",
-  "rules": []
-}

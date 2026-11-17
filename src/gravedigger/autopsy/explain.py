@@ -38,7 +38,7 @@ from gravedigger.exhume import Unit
 
 logger = logging.getLogger(__name__)
 
-PROMPT_VERSION = "autopsy-explain-2"  # change with SYSTEM_PROMPT or the answer format
+PROMPT_VERSION = "autopsy-explain-1"  # change with SYSTEM_PROMPT or the answer format
 CATEGORIES: tuple[str, ...] = ("tariff", "tax", "date", "surcharge", "error", "other")
 PROVIDERS: tuple[str, ...] = ("anthropic", "openai")
 ANTHROPIC_DEFAULT_MODEL = "claude-haiku-5-5"
@@ -345,16 +345,12 @@ number, then a vertical bar, then the code. After the code you receive FACTS tha
 a scanner found. Write a structured answer with a summary and a list of rules.
 
 summary
-  One sentence in plain English that says what this unit does for one customer's bill.
+  One sentence in plain English that says what this unit does.
 
 rules
-  Cover every business rule a billing analyst would recognise: rates and
-  thresholds, slabs, minimums, defaults used when data is missing, tax bases,
-  date shifts and due dates, surcharges and fees, and error handling (what
-  happens to this customer's bill when an error occurs). Do not skip any.
-  One fact per rule, written as "If ..., then ..." or "X is Y". Keep each rule
-  short and plain, and state the exact numbers and conditions from the code.
-  For every rule give:
+  The business rules a billing analyst would recognise: rates and thresholds,
+  slabs, taxes, dates and due dates, surcharges and fees, and error handling.
+  One rule per idea. For every rule give:
   - text: plain English that a non-programmer can read. Say what happens and when.
     Avoid variable names and PL/SQL words.
   - lines: the file line numbers, as integers, taken from the left of the bars.
@@ -376,13 +372,6 @@ A checker rejects every rule that breaks one of these rules:
      Do not fix, judge or soften it.
   5. Do not invent rules. If the unit has few rules, return few.
   6. Tariff codes such as A1 and A2 may be written as they are.
-
-Scope rules:
-  A. Each unit runs for ONE customer's bill. Even when the unit is the one that
-     bills a customer, it handles a single customer per call. Never describe
-     batches, runs, cycles or other customers.
-  B. Never guess beyond the code. Say only what the code shows. Do not put line
-     numbers inside rule text.
 
 Return only the structured answer.
 """

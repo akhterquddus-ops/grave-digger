@@ -1,0 +1,20 @@
+{
+  "unit": "p_taxes",
+  "summary": "This procedure works out two tax amounts from an energy charge, a fixed charge and a fuel-related charge: an electricity duty of 1.5% on the energy charge, and a GST of 17% on the energy charge, fixed charge, fuel charge and the duty together.",
+  "rules": [
+    {
+      "text": "The electricity duty is 1.5% of the energy charge, rounded to 2 decimal places.",
+      "lines": [
+        111
+      ],
+      "category": "tax"
+    },
+    {
+      "text": "GST is 17% of the total of the energy charge, the fixed charge, the fuel-related charge and the electricity duty, rounded to 2 decimal places. The duty is therefore taxed as well, so tax is charged on tax.",
+      "lines": [
+        112
+      ],
+      "category": "tax"
+    }
+  ]
+}

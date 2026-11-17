@@ -625,6 +625,30 @@
         "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
         "timestamp": 1794941874301
       }
+    ],
+    "18.1 Restore v1 and run the checks": [
+      {
+        "executionId": "0b021a47-b40f-4668-9450-6f4d34650151",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794942044127
+      },
+      {
+        "executionId": "0b021a47-b40f-4668-9450-6f4d34650151",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794942048641
+      },
+      {
+        "executionId": "0b021a47-b40f-4668-9450-6f4d34650151",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794942220714
+      }
+    ],
+    "18. Revert prompt v2 and keep ELSE": [
+      {
+        "executionId": "0b021a47-b40f-4668-9450-6f4d34650151",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794942220779
+      }
     ]
   }
 }

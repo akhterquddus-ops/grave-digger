@@ -1,5 +1,0 @@
-{
-  "unit": "f_due_dt",
-  "summary": "This unit works out the payment due date for a customer's bill by taking the meter reading date, adding 14 days, and moving the date to the next day if it would fall on a Sunday.",
-  "rules": []
-}

@@ -159,11 +159,8 @@ The feature also adds the `anthropic` and `openai` SDKs to `pyproject.toml`, and
 7. THE System_Prompt SHALL ask that the text of a rule contains no line numbers.
 8. THE System_Prompt SHALL ask that the text of a rule uses only numbers that appear in the code, and SHALL state that a percentage such as 17% is allowed for 0.17.
 9. THE Explainer SHALL use the Answer_Format as the tool schema (Anthropic) and as the format described in the prompt (OpenAI).
-10. THE System_Prompt SHALL tell the model that each Unit runs for ONE customer's bill (`p_gen_bill` bills one customer per call), and SHALL forbid describing batches, runs or other customers.
-11. THE System_Prompt SHALL ask for one fact per Rule, short and plain, in the form "If ..., then ..." or "X is Y", stating the exact numbers and conditions from the code.
-12. THE System_Prompt SHALL ask the model to cover every business rule of the Unit: rates and thresholds, minimums, defaults when data is missing, tax bases, date shifts, surcharges, and error handling (what happens to this customer's bill on an error).
-13. THE System_Prompt SHALL tell the model not to guess beyond the code, and not to write line numbers inside the text of a Rule.
-14. THE `PROMPT_VERSION` SHALL be `autopsy-explain-2`, so that Cache files written with the earlier prompt are never read by exact lookup (Requirement 7).
+10. THE `PROMPT_VERSION` SHALL be `autopsy-explain-1`, and THE System_Prompt SHALL be the v1 text of the design.
+11. HISTORY: a prompt v2 (`autopsy-explain-2`) was tried once and reverted. It asked for one customer per unit, one fact per Rule in "If ..., then ..." form, and full coverage of every business rule. On the real provider it scored 4/8 on `tests/test_autopsy_quality.py`, because Claude returned an empty `rules` list for `f_units`, `f_fpa`, `f_due_dt` and `p_gen_bill`. v1 scores 8/8 and is kept. The v1 weakness that v2 aimed at (a `p_gen_bill` Rule that says "the whole run" and "the batch") is still open.
 
 ### Requirement 6: Tolerant reading of the model answer
 

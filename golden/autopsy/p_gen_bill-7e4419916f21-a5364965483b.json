@@ -1,5 +1,0 @@
-{
-  "unit": "p_gen_bill",
-  "summary": "This procedure builds one customer's monthly electricity bill for a given billing month by working out units, charges, taxes, due date, late payment charge and TV fee, then saves the bill total to the bill header table.",
-  "rules": []
-}

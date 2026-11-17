@@ -202,7 +202,7 @@ Scope for this plan:
     - Run `.venv\Scripts\python.exe scripts\explain_sample.py` once. The cache in `golden/autopsy` holds the answers and the guardrail runs again on cached rules, so the run must make no API call. Confirm that all eight units report `source: cache` and that no `LLM call failed` line appears, then report the kept and dropped rules for each unit
     - _Requirements: 3.16, 7.3, 11.5_
 
-- [x] 17. Prompt v2 and ELSE evidence (answer key: `tests/test_autopsy_quality.py`)
+- [x] 17. Prompt v2 (TRIED AND REVERTED, see task 18) and ELSE evidence (kept) (answer key: `tests/test_autopsy_quality.py`)
   - [x] 17.1 Add ELSE to the evidence lines
     - In `evidence_lines`, count an `ELSE` branch keyword line of live code as a fact (whole word `ELSE`, searched in the masked text; not the `ELSE` inside `ELSIF`, which is a different word). Update the docstring
     - Confirm `f_units` line 24 is now in `evidence_lines`, and that lines 43 and 48 of `f_enrg_chg` stay out. Edit no test file
@@ -226,6 +226,14 @@ Scope for this plan:
     - Run `.venv\Scripts\python.exe -m pytest -q tests/test_autopsy_quality.py -rs` once and report the score out of 8. For any planted rule that is missing, show the kept rules of that unit
     - Keep v2 only if the score is 8/8 AND the `p_gen_bill` rule about "the whole run" / "batch" is gone. Otherwise STOP and report; do not call the API again. The user will decide whether to restore v1 (`git checkout -- golden/autopsy`, `PROMPT_VERSION = "autopsy-explain-1"`, and the v1 `SYSTEM_PROMPT` and `evidence_lines` as they were)
     - _Requirements: 5.14, 7.5_
+
+- [x] 18. Revert prompt v2 and keep ELSE
+  - [x] 18.1 Restore v1 and run the checks
+    - History: prompt v2 scored 4/8 on `tests/test_autopsy_quality.py` because Claude returned empty `rules` lists for four units; v1 scores 8/8, so v2 is reverted. Do not call the API
+    - Delete the eight untracked v2 `*.json` files in `golden/autopsy`, then run `git checkout -- golden/autopsy` to restore the eight v1 files
+    - In `explain.py` set `PROMPT_VERSION = "autopsy-explain-1"` and restore the v1 `SYSTEM_PROMPT` text of the design. KEEP the ELSE evidence change of task 17.1
+    - Run `.venv\Scripts\python.exe -m pytest -q` and `.venv\Scripts\python.exe -m pytest -q tests/test_autopsy_quality.py -rs`; expect all green and 8/8. Edit no test file
+    - _Requirements: 5.10, 5.11, 7.5_
 
 ## Notes
 
@@ -265,7 +273,8 @@ Scope for this plan:
     { "id": 23, "tasks": ["17.2"] },
     { "id": 24, "tasks": ["17.3"] },
     { "id": 25, "tasks": ["17.4"] },
-    { "id": 26, "tasks": ["17.5"] }
+    { "id": 26, "tasks": ["17.5"] },
+    { "id": 27, "tasks": ["18.1"] }
   ]
 }
 ```
