@@ -202,6 +202,31 @@ Scope for this plan:
     - Run `.venv\Scripts\python.exe scripts\explain_sample.py` once. The cache in `golden/autopsy` holds the answers and the guardrail runs again on cached rules, so the run must make no API call. Confirm that all eight units report `source: cache` and that no `LLM call failed` line appears, then report the kept and dropped rules for each unit
     - _Requirements: 3.16, 7.3, 11.5_
 
+- [x] 17. Prompt v2 and ELSE evidence (answer key: `tests/test_autopsy_quality.py`)
+  - [x] 17.1 Add ELSE to the evidence lines
+    - In `evidence_lines`, count an `ELSE` branch keyword line of live code as a fact (whole word `ELSE`, searched in the masked text; not the `ELSE` inside `ELSIF`, which is a different word). Update the docstring
+    - Confirm `f_units` line 24 is now in `evidence_lines`, and that lines 43 and 48 of `f_enrg_chg` stay out. Edit no test file
+    - _Requirements: 2.3, 2.9_
+
+  - [x] 17.2 Prompt v2
+    - Set `PROMPT_VERSION = "autopsy-explain-2"` and rewrite `SYSTEM_PROMPT`: one customer's bill per unit and no batches or runs; one fact per rule in "If ..., then ..." or "X is Y" form, short, exact numbers and conditions; cover every business rule (rates and thresholds, minimums, defaults when data is missing, tax bases, date shifts, surcharges, error handling for this customer's bill); no guessing beyond the code; no line numbers in text. Keep the checker rules of v1 (line numbers, numbers from the code, no comments, no fixing, no inventing)
+    - Edit no test file
+    - _Requirements: 5.10, 5.11, 5.12, 5.13, 5.14_
+
+  - [x] 17.3 Run the whole suite
+    - Run `.venv\Scripts\python.exe -m pytest -q`. Everything passes; the 8 quality tests SKIP because the cache is stale. Report the summary line and the skip count. Fix `explain.py` only (never a test) if a test fails
+    - _Requirements: 12.1, 12.2_
+
+  - [x] 17.4 Replace the cache and run the real provider ONCE
+    - The v1 files in `golden/autopsy` are committed in git (restorable). Delete the eight v1 `*.json` files, then run `.venv\Scripts\python.exe scripts\explain_sample.py` exactly once with the real Anthropic key (user approved, about one cent). Do not run it again
+    - If a unit fails (LLM call failed) report it; do not retry
+    - _Requirements: 11.1, 11.3, 11.5_
+
+  - [x] 17.5 Score the answer key and decide
+    - Run `.venv\Scripts\python.exe -m pytest -q tests/test_autopsy_quality.py -rs` once and report the score out of 8. For any planted rule that is missing, show the kept rules of that unit
+    - Keep v2 only if the score is 8/8 AND the `p_gen_bill` rule about "the whole run" / "batch" is gone. Otherwise STOP and report; do not call the API again. The user will decide whether to restore v1 (`git checkout -- golden/autopsy`, `PROMPT_VERSION = "autopsy-explain-1"`, and the v1 `SYSTEM_PROMPT` and `evidence_lines` as they were)
+    - _Requirements: 5.14, 7.5_
+
 ## Notes
 
 - This plan has no test sub-tasks and no optional (`*`) tasks. The design's properties stay in prose, and the 21 existing acceptance tests plus the checkpoint runs are the verification (requirement 12.5).
@@ -235,7 +260,12 @@ Scope for this plan:
     { "id": 18, "tasks": ["16.1"] },
     { "id": 19, "tasks": ["16.2"] },
     { "id": 20, "tasks": ["16.3"] },
-    { "id": 21, "tasks": ["16.4"] }
+    { "id": 21, "tasks": ["16.4"] },
+    { "id": 22, "tasks": ["17.1"] },
+    { "id": 23, "tasks": ["17.2"] },
+    { "id": 24, "tasks": ["17.3"] },
+    { "id": 25, "tasks": ["17.4"] },
+    { "id": 26, "tasks": ["17.5"] }
   ]
 }
 ```

@@ -533,6 +533,98 @@
         "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
         "timestamp": 1794941004444
       }
+    ],
+    "17.1 Add ELSE to the evidence lines": [
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941601946
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941607942
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941651924
+      }
+    ],
+    "17.2 Prompt v2": [
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941601987
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941655471
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941699691
+      }
+    ],
+    "17.3 Run the whole suite": [
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941602025
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941699735
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941725541
+      }
+    ],
+    "17.4 Replace the cache and run the real provider ONCE": [
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941602088
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941729058
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941809605
+      }
+    ],
+    "17.5 Score the answer key and decide": [
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941602123
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941809659
+      },
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941874258
+      }
+    ],
+    "17. Prompt v2 and ELSE evidence (answer key: `tests/test_autopsy_quality.py`)": [
+      {
+        "executionId": "056bd747-4ab5-4832-8097-7e1cf920fa4b",
+        "chatSessionId": "sess_4d2ee1a8-1027-4a98-aeff-575b4bcadcab",
+        "timestamp": 1794941874301
+      }
     ]
   }
 }

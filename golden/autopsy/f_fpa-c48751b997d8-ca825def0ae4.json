@@ -1,0 +1,5 @@
+{
+  "unit": "f_fpa",
+  "summary": "This unit calculates the Fuel Price Adjustment charge for one customer's bill by multiplying the billed units by the month's stored per-kWh rate, or returns zero if no rate exists for that month.",
+  "rules": []
+}

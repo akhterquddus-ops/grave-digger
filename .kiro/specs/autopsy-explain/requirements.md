@@ -6,7 +6,7 @@ The explainer is the "what does this code really do" step of the Autopsy page in
 
 An LLM writes the explanation, so every rule passes a guardrail before it is shown. The guardrail drops any rule that cites a line that is not live code carrying a fact, puts line numbers in its text, or states a number that does not appear in the code. Dropped rules are kept with a reason, so the user can see what was rejected. When no LLM is available, the explainer builds a static Explanation from the scanner facts alone.
 
-The module is `src/gravedigger/autopsy/explain.py`. It reuses `Unit` (`gravedigger.exhume`), `Facts`, `Constant` and `scan` (`gravedigger.autopsy.scanner`) and the settings function `setting(key, default)` (`gravedigger.config`). The acceptance tests are in `tests/test_autopsy_explain.py`. Its module docstring and its tests are the source of truth for names, signatures and behaviour, and this feature does not modify that file.
+The module is `src/gravedigger/autopsy/explain.py`. It reuses `Unit` (`gravedigger.exhume`), `Facts`, `Constant` and `scan` (`gravedigger.autopsy.scanner`) and the settings function `setting(key, default)` (`gravedigger.config`). The acceptance tests are in `tests/test_autopsy_explain.py`. The quality answer key, `tests/test_autopsy_quality.py`, reads the committed Cache in `golden/autopsy` (no API call) and scores 8 planted rules; it is skipped for a unit whose Cache is stale. Its module docstring and its tests are the source of truth for names, signatures and behaviour, and this feature does not modify that file.
 
 The public contract is:
 
@@ -36,7 +36,7 @@ The feature also adds the `anthropic` and `openai` SDKs to `pyproject.toml`, and
 - **Live_Code**: The lines of a Unit that are neither blank, nor comments, nor commented-out code.
 - **Evidence_Lines**: The result of `evidence_lines(unit)`: the file line numbers of Live_Code that carry at least one fact.
 - **Boundary_Number**: A number that is one more than a literal `c` in a comparison `> c`, or one less than a literal `c` in a comparison `< c`, on an Evidence_Lines line of the Unit. It is the first or last whole value of a slab (for `> 100`, the number 101).
-- **Fact_Carrier**: A numeric constant, a table read or written, a string literal, a call to a sibling unit, an `IF` or `ELSIF` branch, or an exception handler (`WHEN ... THEN` inside an `EXCEPTION` section, and the `EXCEPTION` keyword line).
+- **Fact_Carrier**: A numeric constant, a table read or written, a string literal, a call to a sibling unit, an `IF`, `ELSIF` or `ELSE` branch, or an exception handler (`WHEN ... THEN` inside an `EXCEPTION` section, and the `EXCEPTION` keyword line).
 - **Number_Token**: A number in the text of a Rule. A digit sequence glued to letters or underscores, such as the `2` in `A2` or in `p_2`, is part of a name and is not a Number_Token.
 - **Code_Numbers**: The set of numbers allowed in Rule text: the value and the absolute value of every Constant in `Facts.constants`, and every number inside the strings of `Facts.string_literals`.
 - **Percentage_Form**: A Number_Token followed by `%` whose value divided by 100 equals a Code_Numbers value, such as `17%` for `0.17` and `1.5%` for `0.015`.
@@ -83,12 +83,13 @@ The feature also adds the `anthropic` and `openai` SDKs to `pyproject.toml`, and
 
 1. WHEN a Unit is passed to `evidence_lines`, THE Explainer SHALL return a `frozenset[int]` of file line numbers of Live_Code lines that contain at least one Fact_Carrier.
 2. THE `evidence_lines` function SHALL include the line of every numeric constant in `Facts.constants`.
-3. THE `evidence_lines` function SHALL include the line of every table read or written, every string literal, every call to a sibling unit, every `IF` or `ELSIF` branch, and every exception handler.
+3. THE `evidence_lines` function SHALL include the line of every table read or written, every string literal, every call to a sibling unit, every `IF`, `ELSIF` or `ELSE` branch, and every exception handler.
 4. THE `evidence_lines` function SHALL NOT include a comment line or a line of commented-out code, even when that line contains a number, a table name or a keyword.
 5. THE `evidence_lines` function SHALL NOT include a line number below `Unit.start_line` or above `Unit.end_line`.
 6. WHEN the Unit is `f_enrg_chg`, THE `evidence_lines` function SHALL include lines 42, 44 and 56, and SHALL NOT include line 43 (a comment) or line 48 (a commented-out old rate).
 7. WHEN the Unit is `p_gen_bill`, THE `evidence_lines` function SHALL include line 195 (`INSERT INTO BILL_HDR`) and line 205 (`WHEN OTHERS`).
 8. THE `evidence_lines` function SHALL be a pure function: it SHALL read no file and use no network.
+9. WHEN the Unit is `f_units`, THE `evidence_lines` function SHALL include the `ELSE` line 24, so that a Rule about the normal case (no roll-over) citing lines 24 and 25 is kept by the Guardrail.
 
 ### Requirement 3: Guardrail on every rule
 
@@ -158,6 +159,11 @@ The feature also adds the `anthropic` and `openai` SDKs to `pyproject.toml`, and
 7. THE System_Prompt SHALL ask that the text of a rule contains no line numbers.
 8. THE System_Prompt SHALL ask that the text of a rule uses only numbers that appear in the code, and SHALL state that a percentage such as 17% is allowed for 0.17.
 9. THE Explainer SHALL use the Answer_Format as the tool schema (Anthropic) and as the format described in the prompt (OpenAI).
+10. THE System_Prompt SHALL tell the model that each Unit runs for ONE customer's bill (`p_gen_bill` bills one customer per call), and SHALL forbid describing batches, runs or other customers.
+11. THE System_Prompt SHALL ask for one fact per Rule, short and plain, in the form "If ..., then ..." or "X is Y", stating the exact numbers and conditions from the code.
+12. THE System_Prompt SHALL ask the model to cover every business rule of the Unit: rates and thresholds, minimums, defaults when data is missing, tax bases, date shifts, surcharges, and error handling (what happens to this customer's bill on an error).
+13. THE System_Prompt SHALL tell the model not to guess beyond the code, and not to write line numbers inside the text of a Rule.
+14. THE `PROMPT_VERSION` SHALL be `autopsy-explain-2`, so that Cache files written with the earlier prompt are never read by exact lookup (Requirement 7).
 
 ### Requirement 6: Tolerant reading of the model answer
 

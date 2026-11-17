@@ -1,0 +1,68 @@
+{
+  "unit": "f_enrg_chg",
+  "summary": "This unit works out the energy charge on one customer's bill from the tariff code and the number of units used, and returns that charge rounded to two decimal places.",
+  "rules": [
+    {
+      "text": "If the tariff is A1 and units used is more than 300, then the whole consumption is charged at 22 per unit.",
+      "lines": [
+        42,
+        44
+      ],
+      "category": "tariff"
+    },
+    {
+      "text": "If the tariff is A1 and units used is more than 200 but not more than 300, then the first 100 units are charged 10 each, the next 100 units are charged 13 each, and each unit above 200 is charged 16.",
+      "lines": [
+        46,
+        47
+      ],
+      "category": "tariff"
+    },
+    {
+      "text": "If the tariff is A1 and units used is more than 100 but not more than 200, then the first 100 units are charged 10 each and each unit above 100 is charged 13.",
+      "lines": [
+        49,
+        50
+      ],
+      "category": "tariff"
+    },
+    {
+      "text": "If the tariff is A1 and units used is 100 or fewer, then every unit is charged 10.",
+      "lines": [
+        52
+      ],
+      "category": "tariff"
+    },
+    {
+      "text": "If the tariff is A2, then every unit is charged 25, with no slabs.",
+      "lines": [
+        55,
+        56
+      ],
+      "category": "tariff"
+    },
+    {
+      "text": "If the tariff is neither A1 nor A2, then the energy charge is 0.",
+      "lines": [
+        58,
+        59
+      ],
+      "category": "tariff"
+    },
+    {
+      "text": "The energy charge is rounded to 2 decimal places before it is returned.",
+      "lines": [
+        64
+      ],
+      "category": "other"
+    },
+    {
+      "text": "When the debug switch is on, the unit writes the tariff, units and charge to the debug output; this does not change the amount returned.",
+      "lines": [
+        61,
+        62
+      ],
+      "category": "other"
+    }
+  ]
+}

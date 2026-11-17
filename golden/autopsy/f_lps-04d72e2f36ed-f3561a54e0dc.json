@@ -1,0 +1,37 @@
+{
+  "unit": "f_lps",
+  "summary": "This unit works out the late payment surcharge on one customer's bill: it returns zero if the bill has not been paid or was paid on or before the due date, and otherwise returns 10% of the energy amount.",
+  "rules": [
+    {
+      "text": "If the payment date is empty (the bill has not been paid), then the late payment surcharge is 0.",
+      "lines": [
+        133,
+        134
+      ],
+      "category": "surcharge"
+    },
+    {
+      "text": "If the payment date is later than the due date, then the late payment surcharge is 10% of the energy amount, rounded to 2 decimal places.",
+      "lines": [
+        136,
+        137
+      ],
+      "category": "surcharge"
+    },
+    {
+      "text": "If the payment date is on or before the due date, then the late payment surcharge is 0.",
+      "lines": [
+        136,
+        139
+      ],
+      "category": "surcharge"
+    },
+    {
+      "text": "The late payment surcharge is not charged on bills paid on the due date itself, because only payments made after the due date trigger it.",
+      "lines": [
+        136
+      ],
+      "category": "date"
+    }
+  ]
+}
