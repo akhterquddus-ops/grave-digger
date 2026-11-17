@@ -18,3 +18,4 @@
 | 2026-11-17 | Spec (update) | First real Claude run (~1 cent). Guardrail too strict: dropped multi-line and boundary-number rules. Loosened test-first; re-scored from cache with no API call | all kept rules anchored; 1 kept rule had wrong scope -> prompt v2 |
 | 2026-11-17 | Answer key | tests/test_autopsy_quality.py: 8 planted rules vs cached Claude autopsy | v1 prompt scores 8/8 |
 | 2026-11-17 | Experiment | Prompt v2 (one fact per rule, cite only live lines) scored 4/8: empty rule lists for simple units. Reverted to v1 (8/8); kept the ELSE evidence fix | decision rule held: never trade coverage for wording |
+| 2026-11-18 | Spec + MCP | resurrect-billing: 8 per-unit requirement sections; Kiro cross-checked 5 legacy calls in real Oracle via MCP before designing | billing.py port; 117 tests green |
