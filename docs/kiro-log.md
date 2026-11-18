@@ -37,3 +37,4 @@
 - No-trace check after the run (baseline before the run was identical): CUST_MST 0, MTR_RDG 0, PYMT 0, BILL_HDR probe 0, FPA_RT 209912 0, BILL_HDR all 5.
 - Timing: the three property tests together take about 4.8 s, close to the 5 s budget.
 | 2026-11-18 | Hooks | prove-on-save: PostFileSave hook (matcher 'resurrected') with an agent action. Kiro file hooks fire only on agent edits, so it acts as a guardrail: whenever Kiro changes the Python port, it must re-run the hunt against the 2,006 Oracle bills. Test edit: hook triggered, 40 passed, no ghosts, 0.28 credits, 12 s |
+| 2026-11-18 | CI | GitHub Actions 'Prove': fresh Oracle AI Database Free, legacy package loaded with sqlplus (0 invalid objects, 5 seed bills), then the full suite with the Hypothesis ci profile (2,000 random bills vs real Oracle). The run fails if any test is skipped. Run #1 green in 2m 10s; README badge |
