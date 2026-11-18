@@ -1,0 +1,472 @@
+{
+  "pbtResults": {
+    "7.4 Write the property for R5.3 and R5.6": {
+      "status": "passed",
+      "lastRunTimestamp": 1794985448961
+    },
+    "7.2 Write the property for R1.7": {
+      "status": "passed",
+      "lastRunTimestamp": 1794985448572
+    },
+    "7.3 Write the property for R3.5": {
+      "status": "passed",
+      "lastRunTimestamp": 1794985453089
+    }
+  },
+  "executionHistory": {
+    "1.1 Re-read the Port's unit-function signatures": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984199807
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984210795
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984239741
+      }
+    ],
+    "1.2 Run the baseline no-trace query through the MCP server": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984201675
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984211246
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984240413
+      }
+    ],
+    "2.1 Add `GoldenCase`, `GOLDEN_PATH`, `save_cases` and `load_cases`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984202491
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984244546
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984309867
+      }
+    ],
+    "2.2 Add `build_golden`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984202588
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984314075
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984552142
+      }
+    ],
+    "2.3 Smoke check `golden.py` without Oracle": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984202685
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984555600
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984661186
+      }
+    ],
+    "3.1 Add `Ghost`, `HuntReport` and `hunt`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984202823
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984315000
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984551496
+      }
+    ],
+    "3.2 Smoke check `hunt.py` and run the existing non-Oracle tests": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984202950
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984556080
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984661881
+      }
+    ],
+    "4.1 Add the deliberately wrong draft": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203075
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984244869
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984310558
+      }
+    ],
+    "4.2 Smoke check the draft": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203239
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984315235
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984552344
+      }
+    ],
+    "5. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203340
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985700412
+      }
+    ],
+    "6.1 Add `known_inputs`, `draw_inputs` and `write_atomically`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203433
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984671458
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984714826
+      }
+    ],
+    "6.2 Add `main()` and the entry point": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203543
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984715151
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984750142
+      }
+    ],
+    "6.3 Check the script without Oracle and check the ignore rules": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203664
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984753743
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984825959
+      }
+    ],
+    "7.1 Add generators and shared helpers": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203782
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984754241
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984826188
+      }
+    ],
+    "7.2 Write the property for R1.7": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984203890
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984831070
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984926833
+      }
+    ],
+    "7.3 Write the property for R3.5": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204021
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984929937
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984972510
+      }
+    ],
+    "7.4 Write the property for R5.3 and R5.6": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204150
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984975620
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985005879
+      }
+    ],
+    "7.5 Run the new file and time it": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204282
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985006397
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985470150
+      }
+    ],
+    "8. Checkpoint - Ensure all tests pass without the snapshot": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204430
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985700489
+      }
+    ],
+    "9.1 Baseline no-trace check before the run": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204505
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985475257
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985499350
+      }
+    ],
+    "9.2 Run `scripts\\make_golden.py` once": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204578
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985499844
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985553811
+      }
+    ],
+    "9.3 No-trace check after the run": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204687
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985553887
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985577247
+      }
+    ],
+    "10.1 Run the full test suite with Oracle up": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204820
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985577499
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985623156
+      }
+    ],
+    "10.2 Report the numbers and log them": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984204983
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985623660
+      },
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985695338
+      }
+    ],
+    "1. Baseline before any code": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984240465
+      }
+    ],
+    "4. Implement `src/gravedigger/resurrected/billing_draft.py`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984552436
+      }
+    ],
+    "2. Implement `src/gravedigger/prove/golden.py`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984661260
+      }
+    ],
+    "3. Implement `src/gravedigger/prove/hunt.py`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984661954
+      }
+    ],
+    "6. Implement `scripts/make_golden.py`": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794984826087
+      }
+    ],
+    "7. Add `tests/test_ghost_hunt_properties.py` (new file, exactly three properties)": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985470206
+      }
+    ],
+    "9. Build the golden snapshot once (Oracle must be running)": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985577301
+      }
+    ],
+    "10. Final full run and report": [
+      {
+        "executionId": "887fe57a-cf82-4465-8b7f-a45e7fff478b",
+        "chatSessionId": "sess_5c3e7a40-9705-431a-90e1-fd2eba57f4fe",
+        "timestamp": 1794985695418
+      }
+    ]
+  }
+}

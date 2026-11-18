@@ -26,3 +26,13 @@
 | 2026-11-18 | Decision | Keep the ghosts honest but the search sensible: generate only dates from 2000 to 2100, and set deadline=None in the dev and ci Hypothesis profiles (Oracle round trips are slow and a timing deadline would raise false alarms) | The Julian-calendar gap stays documented as a known limit, not hidden. Profiles: dev 200 examples, ci 2000 examples |
 | 2026-11-18 | Tests (Oracle) | Ran the Oracle-marked tests against the real database | 8 oracle tests passed. The probe customer left no trace: all counts 0, BILL_HDR still 5 rows. The graveyard was left as we found it |
 | 2026-11-18 | Property-based testing | prove-equivalence: Hypothesis ci profile, Python port vs real Oracle | 2,000 passing, 0 failing, ~10 s; 139 tests green |
+
+## Ghost-hunt spec: results
+
+- Tests passed: 154 (full suite, 0 failed, 0 skipped).
+- Oracle tests: 10 passed, none skipped.
+- Golden case count: 2006 (golden/cases.json).
+- Draft ghost count: 65 of 2006 cases (1941 matched), as expected.
+- Smallest_Ghost: tariff A2, load_kw 0.25, readings 0 to 98, mf 1, rdg_dt 2090-06-16 11:59:02, no FPA rate, no payment. Oracle total 3087, draft total 3086.
+- No-trace check after the run (baseline before the run was identical): CUST_MST 0, MTR_RDG 0, PYMT 0, BILL_HDR probe 0, FPA_RT 209912 0, BILL_HDR all 5.
+- Timing: the three property tests together take about 4.8 s, close to the 5 s budget.
