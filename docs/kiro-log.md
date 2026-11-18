@@ -26,6 +26,14 @@
 | 2026-11-18 | Decision | Keep the ghosts honest but the search sensible: generate only dates from 2000 to 2100, and set deadline=None in the dev and ci Hypothesis profiles (Oracle round trips are slow and a timing deadline would raise false alarms) | The Julian-calendar gap stays documented as a known limit, not hidden. Profiles: dev 200 examples, ci 2000 examples |
 | 2026-11-18 | Tests (Oracle) | Ran the Oracle-marked tests against the real database | 8 oracle tests passed. The probe customer left no trace: all counts 0, BILL_HDR still 5 rows. The graveyard was left as we found it |
 | 2026-11-18 | Property-based testing | prove-equivalence: Hypothesis ci profile, Python port vs real Oracle | 2,000 passing, 0 failing, ~10 s; 139 tests green |
+| 2026-11-18 | Hooks | prove-on-save: PostFileSave hook (matcher 'resurrected') with an agent action. Kiro file hooks fire only on agent edits, so it acts as a guardrail: whenever Kiro changes the Python port, it must re-run the hunt against the 2,006 Oracle bills. Test edit: hook triggered, 40 passed, no ghosts, 0.28 credits, 12 s |
+| 2026-11-18 | CI | GitHub Actions 'Prove': fresh Oracle AI Database Free, legacy package loaded with sqlplus (0 invalid objects, 5 seed bills), then the full suite with the Hypothesis ci profile (2,000 random bills vs real Oracle). The run fails if any test is skipped. Run #1 green in 2m 10s; README badge |
+| 2026-11-18 | Spec | ui: requirements first, then design, then tasks, then code. Every requirement became a test or a Hypothesis property before the Streamlit page was written | Spec complete; app logic kept in a plain Views module so it can be tested without a browser |
+| 2026-11-18 | Decision | Cache with functools.lru_cache in Views instead of st.cache_data | Views stays free of Streamlit, so tests call it directly; the page only draws |
+| 2026-11-18 | Decision | Prove page keeps hunt results in st.session_state["hunt_shown"] and draws from that state on every rerun | Result survives Streamlit reruns (a click on another widget no longer wipes the ghost table) |
+| 2026-11-18 | Cloud | Root requirements.txt with streamlit only | Community Cloud installs just what the page needs; no oracledb or LLM SDK is imported by the UI |
+| 2026-11-18 | Property-based testing | Speed constraint for the UI properties: tests/test_ui_properties.py | 7.5 s under HYPOTHESIS_PROFILE=ci (2.7 s on dev); tests/test_ui.py 28 passed |
+| 2026-11-18 | Property-based testing | Property 4 found a real bug: the KeyError message used !r, which escaped unusual characters in the name | Message fixed to show the name as typed. A nice example of a property test earning its keep |
 
 ## Ghost-hunt spec: results
 
@@ -36,5 +44,3 @@
 - Smallest_Ghost: tariff A2, load_kw 0.25, readings 0 to 98, mf 1, rdg_dt 2090-06-16 11:59:02, no FPA rate, no payment. Oracle total 3087, draft total 3086.
 - No-trace check after the run (baseline before the run was identical): CUST_MST 0, MTR_RDG 0, PYMT 0, BILL_HDR probe 0, FPA_RT 209912 0, BILL_HDR all 5.
 - Timing: the three property tests together take about 4.8 s, close to the 5 s budget.
-| 2026-11-18 | Hooks | prove-on-save: PostFileSave hook (matcher 'resurrected') with an agent action. Kiro file hooks fire only on agent edits, so it acts as a guardrail: whenever Kiro changes the Python port, it must re-run the hunt against the 2,006 Oracle bills. Test edit: hook triggered, 40 passed, no ghosts, 0.28 credits, 12 s |
-| 2026-11-18 | CI | GitHub Actions 'Prove': fresh Oracle AI Database Free, legacy package loaded with sqlplus (0 invalid objects, 5 seed bills), then the full suite with the Hypothesis ci profile (2,000 random bills vs real Oracle). The run fails if any test is skipped. Run #1 green in 2m 10s; README badge |
