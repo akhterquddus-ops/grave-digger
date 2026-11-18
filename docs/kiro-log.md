@@ -35,6 +35,7 @@
 | 2026-11-18 | Property-based testing | Speed constraint for the UI properties: tests/test_ui_properties.py | 7.5 s under HYPOTHESIS_PROFILE=ci (2.7 s on dev); tests/test_ui.py 28 passed |
 | 2026-11-18 | Property-based testing | Property 4 found a real bug: the KeyError message used !r, which escaped unusual characters in the name | Message fixed to show the name as typed. A nice example of a property test earning its keep |
 
+| 2026-11-18 | Deploy | Streamlit Community Cloud: https://grave-digger.streamlit.app (Python 3.12, requirements.txt = streamlit only, no secrets) | Live on first deploy |
 ## Ghost-hunt spec: results
 
 - Tests passed: 154 (full suite, 0 failed, 0 skipped).
