@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Prove on save",
+      "trigger": "PostFileSave",
+      "action": {
+        "type": "agent",
+        "prompt": "Run this command in the terminal from the repo root:\n.venv\\Scripts\\python.exe -m pytest -q -m \"not oracle\" tests/test_resurrect_billing.py tests/test_ghost_hunt.py\n\nThen report in plain English, in at most 6 lines:\n- how many tests passed and failed;\n- if test_real_port_matches_every_golden_bill or test_no_float_and_no_builtin_round_in_the_port fails, start with \"Ghost found\", then give the smallest ghost (tariff, units, Oracle total, Python total) and the line of src/gravedigger/resurrected/billing.py that most likely caused it;\n- if everything passes, say \"No ghosts: the port matches all 2,006 Oracle bills\".\nDo not edit any file. Do not fix the code."
+      },
+      "description": "When the Python port is saved, hunt it against the 2,006 bills that real Oracle produced (golden/cases.json). No database needed. Reports any ghost: a bill where the port and the legacy PL/SQL disagree.",
+      "matcher": "resurrected",
+      "enabled": true
+    }
+  ]
+}

@@ -36,3 +36,4 @@
 - Smallest_Ghost: tariff A2, load_kw 0.25, readings 0 to 98, mf 1, rdg_dt 2090-06-16 11:59:02, no FPA rate, no payment. Oracle total 3087, draft total 3086.
 - No-trace check after the run (baseline before the run was identical): CUST_MST 0, MTR_RDG 0, PYMT 0, BILL_HDR probe 0, FPA_RT 209912 0, BILL_HDR all 5.
 - Timing: the three property tests together take about 4.8 s, close to the 5 s budget.
+| 2026-11-18 | Hooks | prove-on-save: PostFileSave hook (matcher 'resurrected') with an agent action. Kiro file hooks fire only on agent edits, so it acts as a guardrail: whenever Kiro changes the Python port, it must re-run the hunt against the 2,006 Oracle bills. Test edit: hook triggered, 40 passed, no ghosts, 0.28 credits, 12 s |
