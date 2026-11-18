@@ -1,0 +1,79 @@
+name: Prove
+
+# Every push: load the synthetic legacy PL/SQL into a fresh Oracle AI Database Free,
+# then run the whole test suite. The Hypothesis "ci" profile bills 2,000 random
+# customers in real Oracle and in the Python port; every field must match.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  prove:
+    name: Python port vs real Oracle
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      # Throwaway passwords for a database that exists only inside this CI run.
+      ORACLE_PASSWORD: ci_sys_only_9f3k
+      APP_USER_PASSWORD: ci_gd_only_7h2m
+      ORACLE_DSN: localhost:1521/FREEPDB1
+      ORACLE_USER: gd
+      HYPOTHESIS_PROFILE: ci
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start Oracle AI Database Free
+        run: |
+          docker run -d --name gd-oracle -p 1521:1521 \
+            -e ORACLE_PASSWORD -e APP_USER=gd -e APP_USER_PASSWORD \
+            --health-cmd healthcheck.sh --health-interval 10s \
+            --health-timeout 5s --health-retries 60 \
+            gvenzl/oracle-free:slim
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Grave Digger
+        run: pip install -e ".[dev]"
+
+      - name: Wait for Oracle
+        run: |
+          for i in $(seq 1 90); do
+            s=$(docker inspect -f '{{.State.Health.Status}}' gd-oracle)
+            if [ "$s" = "healthy" ]; then echo "Oracle is healthy"; exit 0; fi
+            sleep 5
+          done
+          docker logs gd-oracle | tail -50
+          exit 1
+
+      - name: Load the legacy package and bill the 5 seed customers
+        run: |
+          { echo "SET DEFINE OFF"; echo "SET SQLBLANKLINES ON"; echo "WHENEVER SQLERROR EXIT FAILURE"
+            cat legacy/schema.sql legacy/billing_pkg.pks legacy/billing_pkg.pkb scripts/run_seed_bills.sql
+          } | docker exec -i gd-oracle sqlplus -s -L "gd/${APP_USER_PASSWORD}@//localhost:1521/FREEPDB1"
+          python - <<'EOF'
+          import oracledb
+          from gravedigger.config import oracle_params
+          with oracledb.connect(**oracle_params()) as conn:
+              cur = conn.cursor()
+              invalid = cur.execute("SELECT COUNT(*) FROM user_objects WHERE status <> 'VALID'").fetchone()[0]
+              bills = cur.execute("SELECT COUNT(*) FROM bill_hdr").fetchone()[0]
+          print(f"invalid objects: {invalid}, seed bills written: {bills}")
+          assert invalid == 0 and bills == 5
+          EOF
+
+      - name: Prove (all tests, 2,000 random bills, no skips allowed)
+        run: |
+          python -m pytest -q -rs | tee pytest.txt
+          if grep -qE "[0-9]+ skipped" pytest.txt; then
+            echo "::error::Some tests were skipped. The proof must run in full."
+            exit 1
+          fi

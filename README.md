@@ -1,5 +1,7 @@
 # Grave Digger 🪦⚡
 
+[![Prove: Python vs real Oracle](https://github.com/akhterquddus-ops/grave-digger/actions/workflows/prove.yml/badge.svg)](https://github.com/akhterquddus-ops/grave-digger/actions/workflows/prove.yml)
+
 > **Legacy billing code never dies. It just haunts you.**
 
 Grave Digger raises legacy utility-billing code from the dead. It reads an old Oracle PL/SQL package, explains in plain English what it really does, maps what depends on what, ports it to modern Python, and **proves** the port is correct: property-based tests bill thousands of random customers in Oracle and in Python, and the bills must match to the paisa.
