@@ -8,6 +8,8 @@
 
 **Demo video (under 3 minutes):** https://youtu.be/d3hfuOL5rYg
 
+**How we used Kiro:** [docs/HOW_WE_USED_KIRO.md](docs/HOW_WE_USED_KIRO.md) (specs, steering, hooks, our own Oracle MCP server, property-based testing)
+
 Grave Digger raises legacy utility-billing code from the dead. It reads an old Oracle PL/SQL package, explains in plain English what it really does, maps what depends on what, ports it to modern Python, and **proves** the port is correct: property-based tests bill thousands of random customers in Oracle and in Python, and the bills must match to the paisa.
 
 Built with [Kiro](https://kiro.dev) for **Kiroween 2026** (Resurrection category).
