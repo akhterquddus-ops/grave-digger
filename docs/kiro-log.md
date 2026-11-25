@@ -36,6 +36,7 @@
 | 2026-11-18 | Property-based testing | Property 4 found a real bug: the KeyError message used !r, which escaped unusual characters in the name | Message fixed to show the name as typed. A nice example of a property test earning its keep |
 
 | 2026-11-18 | Deploy | Streamlit Community Cloud: https://grave-digger.streamlit.app (Python 3.12, requirements.txt = streamlit only, no secrets) | Live on first deploy |
+| 2026-11-25 | Video | Demo video published on YouTube (public): https://youtu.be/d3hfuOL5rYg | Recorded from the 8-scene script |
 ## Ghost-hunt spec: results
 
 - Tests passed: 154 (full suite, 0 failed, 0 skipped).
