@@ -6,7 +6,7 @@
 
 **Live demo:** https://grave-digger.streamlit.app (no install, no database: the app replays 2,006 bills billed by real Oracle)
 
-**Demo video (under 3 minutes):** https://youtu.be/d3hfuOL5rYg
+**Demo video (under 3 minutes):** https://youtu.be/KYHCp-cCY8E
 
 **How we used Kiro:** [docs/HOW_WE_USED_KIRO.md](docs/HOW_WE_USED_KIRO.md) (specs, steering, hooks, our own Oracle MCP server, property-based testing)
 
